@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>𝐀𝐑𝐀𝐁 𝐕𝐀𝐋𝐀</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --main:#ff3c00;
+    --glow:#ff7a00;
+}
+body{
+    margin:0;
+    font-family:'Cairo',sans-serif;
+    background:#0a0000;
+    color:#fff;
+    padding-bottom:70px;
+}
+
+/* HEADER */
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px;
+    background:#120000;
+}
+.logo-name{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+.logo-name img{
+    width:50px;
+    height:50px;
+    border-radius:10px;
+}
+.animated-title{
+    font-weight:900;
+    font-size:26px;
+    background: linear-gradient(90deg, #ff3c00, #ff7a00, #ff3c00);
+    background-size:200%;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation: gradientMove 3s linear infinite, scaleText 2s infinite;
+}
+@keyframes gradientMove{100%{background-position:200%;}}
+@keyframes scaleText{50%{transform:scale(1.1);}}
+
+/* DISCORD */
+.discord{
+    background:#5865F2;
+    padding:10px 20px;
+    border-radius:25px;
+    text-decoration:none;
+    color:#fff;
+    transition:.3s;
+}
+.discord:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 20px #5865F2;
+}
+
+/* NAV */
+nav{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    padding:15px;
+    background:#120000;
+}
+nav button{
+    position:relative;
+    background:none;
+    border:none;
+    color:#fff;
+    cursor:pointer;
+    overflow:hidden;
+    padding:10px 15px;
+}
+nav button::before{
+    content:"";
+    position:absolute;
+    left:-100%;
+    width:100%;
+    height:100%;
+    background:linear-gradient(120deg, transparent, var(--glow), transparent);
+    transition:.5s;
+}
+nav button:hover::before{left:100%;}
+nav button:hover{
+    transform:scale(1.1);
+    color:var(--main);
+}
+
+/* CENTER LOGO */
+.center-logo{
+    display:flex;
+    justify-content:center;
+    margin:40px 0;
+    position:relative;
+}
+.center-logo img{
+    width:180px;
+    animation:float 3s infinite;
+}
+.center-logo::before{
+    content:"";
+    position:absolute;
+    width:230px;
+    height:230px;
+    border-radius:50%;
+    background:radial-gradient(circle,var(--main),transparent);
+    animation:pulse 2s infinite;
+    z-index:-1;
+}
+@keyframes float{50%{transform:translateY(-10px);}}
+@keyframes pulse{50%{transform:scale(1.2);opacity:.5;}}
+
+/* SECTIONS */
+section{display:none;padding:20px;}
+section.active{display:block}
+
+/* GRID */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+/* CARD & PRODUCT */
+.card,.product{
+    background:#120000;
+    padding:20px;
+    border-radius:15px;
+    border:1px solid var(--main);
+    text-align:center;
+    transition:.3s;
+}
+.card:hover,.product:hover{
+    transform:translateY(-5px) scale(1.03);
+    box-shadow:0 0 20px var(--glow);
+}
+.product p.rating{margin:5px 0;color:var(--glow);font-size:16px;}
+
+button{
+    width:100%;
+    padding:10px;
+    background:var(--main);
+    border:none;
+    color:#fff;
+    border-radius:8px;
+    cursor:pointer;
+}
+button:active{transform:scale(0.9);}
+
+/* POPUP */
+.popup{
+    position:fixed;
+    top:0;left:0;
+    width:100%;height:100%;
+    background:rgba(0,0,0,.8);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+}
+.popup-content{
+    background:#111;
+    padding:20px;
+    border-radius:15px;
+    width:350px;
+}
+input,textarea{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+    background:#000;
+    border:1px solid var(--main);
+    color:#fff;
+}
+
+/* CART */
+.cart-item{
+    display:flex;
+    justify-content:space-between;
+    background:#120000;
+    padding:10px;
+    margin:10px 0;
+    transition:.4s;
+}
+.cart-item.remove{
+    transform:translateX(120%);
+    opacity:0;
+}
+
+/* BACK BTN */
+.back-btn{
+    background:#222;
+    border:1px solid var(--main);
+}
+.back-btn:hover{
+    background:var(--main);
+    transform:translateX(-5px);
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:20px;
+    opacity:0.7;
+    margin-top:40px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo-name">
+    <img src="logo.png">
+    <h2 class="animated-title">𝐀𝐑𝐀𝐁 𝐕𝐀𝐋𝐀</h2>
+  </div>
+  <a class="discord" href="https://discord.gg/Y9bB38xHTC" target="_blank">دخول الديسكورد</a>
+</header>
+
+<div class="center-logo">
+  <img src="logo.gif">
+</div>
+
+<nav>
+  <button onclick="showSection('apply')">التقديمات</button>
+  <button onclick="showSection('shop')">المتجر</button>
+  <button onclick="showSection('cart')">السلة</button>
+</nav>
+
+<!-- التقديم -->
+<section id="apply" class="active">
+<h2>التقديمات</h2>
+<div class="grid">
+<div class="card" onclick="openForm('امن وطني')">امن وطني</div>
+<div class="card" onclick="openForm('وزارة الداخليه')">وزارة الداخليه</div>
+<div class="card" onclick="openForm('جيش الاحتلال')">جيش الاحتلال</div>
+<div class="card" onclick="openForm('مجلس وزراء')">مجلس وزراء</div>
+<div class="card" onclick="openForm('كتيبة جنين')">كتيبة جنين</div>
+<div class="card" onclick="openForm('كتيبة الرد السريع')">كتيبة الرد السريع</div>
+<div class="card" onclick="openForm('عصابات')">عصابات</div>
+<div class="card" onclick="openForm('القوات المسلحه')">القوات المسلحه</div>
+<div class="card" onclick="openForm('الرقابه الاداريه')">الرقابه الاداريه</div>
+<div class="card" onclick="openForm('ادارة ديسكورد')">ادارة ديسكورد</div>
+</div>
+</section>
+
+<!-- فورم -->
+<div class="popup" id="popup">
+<div class="popup-content">
+<h3 id="title"></h3>
+<input id="name" placeholder="اسمك">
+<input id="discordId" placeholder="Discord ID">
+<textarea id="exp" placeholder="خبرتك"></textarea>
+<button onclick="sendApplication()">إرسال</button>
+<button class="back-btn" onclick="closeForm()">⬅ الرجوع للتقديمات</button>
+</div>
+</div>
+
+<!-- المتجر -->
+<section id="shop">
+<h2>المتجر</h2>
+<div class="grid" id="productsContainer"></div>
+</section>
+
+<!-- السلة -->
+<section id="cart">
+<h2>السلة</h2>
+<div id="cartContainer"></div>
+<p id="totalPrice">الإجمالي: 0 $</p>
+<button onclick="checkout()">الدفع</button>
+</section>
+
+<!-- الدفع -->
+<div class="popup" id="checkoutPopup">
+<div class="popup-content">
+<h3>الدفع</h3>
+<input id="customerName" placeholder="اسمك">
+<input id="customerDiscord" placeholder="يوزر الديسكورد">
+<div id="checkoutProducts"></div>
+<button onclick="sendOrder()">إرسال الطلب</button>
+<button class="back-btn" onclick="closeCheckout()">⬅ الرجوع</button>
+</div>
+</div>
+
+<footer>
+Made by K E T A M E N✨
+</footer>
+
+<script>
+// Webhooks
+const APPLY_WEBHOOK = "https://discord.com/api/webhooks/1486187060317519942/6x2QxJDkqqJce_jGTUT3TQu8E8FIIgHeKJrp_ussR6IPAwwHLFfdsx5C-vIyHM6DJBvj";
+const ORDER_WEBHOOK = "https://discord.com/api/webhooks/1486191134635069441/QcanuF-PQb93Rg762C9kZHYHbMSBZ9saGiqsypo-bHmBu_DINXkNj9X4IluRaa754igZ";
+
+// NAVIGATION
+function showSection(id){
+  document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+// FORM
+let faction = "";
+function openForm(name){
+  faction = name;
+  document.getElementById("popup").style.display = "flex";
+  document.getElementById("title").innerText = "تقديم لـ " + name;
+}
+function closeForm(){document.getElementById("popup").style.display="none";}
+
+function sendApplication(){
+  let name = document.getElementById("name").value;
+  let discord = document.getElementById("discordId").value;
+  let exp = document.getElementById("exp").value;
+
+  fetch(APPLY_WEBHOOK,{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({
+      content:`📩 تقديم جديد
+الاسم: ${name}
+الديسكورد: ${discord}
+الخبرة: ${exp}
+الجهة: ${faction}`
+    })
+  }).then(res=>{
+      alert("تم إرسال التقديم 🔥");
+      closeForm();
+  }).catch(err=>{
+      alert("في مشكلة في الإرسال ❌");
+      console.log(err);
+  });
+}
+
+// PRODUCTS
+const products = [
+{name:"راعى برونزى 🥉", price:3, image:"https://img.icons8.com/color/96/bronze-medal.png", rating:"⭐⭐⭐"},
+{name:"راعى فضى 🥈", price:5, image:"https://img.icons8.com/color/96/silver-medal.png", rating:"⭐⭐⭐⭐"},
+{name:"راعى الماس 💎", price:10, image:"https://img.icons8.com/color/96/diamond.png", rating:"⭐⭐⭐⭐⭐"},
+{name:"راعى بريميوم 🔥", price:13, image:"https://img.icons8.com/color/96/premium.png", rating:"⭐⭐⭐⭐⭐"},
+{name:"راعى بريميوم بلس ✨", price:20, image:"https://img.icons8.com/color/96/premium-badge.png", rating:"⭐⭐⭐⭐⭐"},
+{name:"سياره مميزه 🚗", price:10, image:"https://img.icons8.com/color/96/sports-car.png", rating:"⭐⭐⭐⭐"},
+{name:"أي دى مميز 🔑", price:10, image:"https://img.icons8.com/color/96/vip-key.png", rating:"⭐⭐⭐⭐⭐"}
+];
+
+let cart = [];
+const container = document.getElementById('productsContainer');
+
+products.forEach(p=>{
+  container.innerHTML+=`
+  <div class="product">
+    <img src="${p.image}" style="width:100%;border-radius:10px;">
+    <h3>${p.name}</h3>
+    <p>${p.price} $</p>
+    <p class="rating">${p.rating}</p>
+    <button onclick="addToCart('${p.name}',${p.price})">أضف إلى السلة</button>
+  </div>`;
+});
+
+// CART
+function addToCart(name,price){
+  cart.push({name,price});
+  renderCart();
+}
+
+function renderCart(){
+  const box = document.getElementById("cartContainer");
+  box.innerHTML="";
+  let total = 0;
+  cart.forEach((item,i)=>{
+    total+=item.price;
+    box.innerHTML+=`
+    <div class="cart-item">
+      <span>${item.name} - ${item.price} $</span>
+      <button onclick="removeItem(${i})">حذف</button>
+    </div>`;
+  });
+  document.getElementById("totalPrice").innerText = "الإجمالي: "+total+" $";
+}
+
+function removeItem(i){
+  const items = document.querySelectorAll(".cart-item");
+  items[i].classList.add("remove");
+  setTimeout(()=>{
+    cart.splice(i,1);
+    renderCart();
+  },400);
+}
+
+// CHECKOUT
+function checkout(){
+  if(cart.length==0){ alert("السلة فارغة"); return; }
+  const div = document.getElementById("checkoutProducts");
+  div.innerHTML="";
+  cart.forEach(i=>{
+    div.innerHTML+=`<p>${i.name} - ${i.price} $</p>`;
+  });
+  document.getElementById("checkoutPopup").style.display="flex";
+}
+
+function closeCheckout(){
+  document.getElementById("checkoutPopup").style.display="none";
+}
+
+function sendOrder(){
+  let name = document.getElementById("customerName").value;
+  let discord = document.getElementById("customerDiscord").value;
+  if(!name || !discord){ alert("اكتب اسمك و ديسكورد"); return; }
+
+  let text = `🛒 طلب جديد\nالاسم: ${name}\nالديسكورد: ${discord}\n`;
+  cart.forEach(i=>{
+    text += `${i.name} - ${i.price} $\n`;
+  });
+
+  fetch(ORDER_WEBHOOK,{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({content:text})
+  }).then(res=>{
+    alert("تم الطلب 🔥");
+    cart=[];
+    renderCart();
+    closeCheckout();
+  }).catch(err=>{
+    alert("في مشكلة في الإرسال ❌");
+    console.log(err);
+  });
+}
+
+renderCart();
+</script>
+
+</body>
+</html>
